@@ -25,8 +25,8 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recycleView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        recycleView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 }
