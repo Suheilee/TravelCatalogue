@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PlaceAdapter(
-    private val places: List<PlaceData>,
+    private var places: List<Place> ,
 ): RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>()  {
     class PlaceViewHolder(view: View): RecyclerView.ViewHolder(view){
         val imageViewPlace = view.findViewById<ImageView>(R.id.imageViewPlace)
@@ -26,8 +26,24 @@ class PlaceAdapter(
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
         val place = places[position]
+
         holder.textViewPlaceName.text = place.name
+        holder.textViewRating.text = place.rating.toString()
+        holder.textViewShortDescription.text = place.shortDescription
+        holder.imageViewPlace.setImageResource(android.R.drawable.ic_menu_gallery)
+
+        if (place.isFavourite) {
+            holder.imageViewRatingStar.setImageResource(R.drawable.rating_star)
+            holder.imageViewRatingStar.visibility = View.VISIBLE
+        } else {
+            holder.imageViewRatingStar.visibility = View.GONE
+        }
     }
 
     override fun getItemCount(): Int = places.size
+
+    fun updateList(newPlaces: List<Place>) {
+        places = newPlaces
+        notifyDataSetChanged()
+    }
 }

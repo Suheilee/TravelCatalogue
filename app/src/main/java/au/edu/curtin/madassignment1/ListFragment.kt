@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ListFragment : Fragment() {
 
+    private lateinit var placeAdapter: PlaceAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,6 +29,12 @@ class ListFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
+        placeAdapter = PlaceAdapter(PlaceData.samplePlaces)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.adapter = placeAdapter
+    }
+
+    fun updateList(places: List<Place>) {
+        placeAdapter.updateList(places)
     }
 }
