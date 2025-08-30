@@ -7,7 +7,7 @@ data class Place(
     val shortDescription: String,
     val longDescription: String,
     val rating: Float,
-    val image: String, // image URL
+    val image: Int, // image URL
     val categories: List<String> = emptyList(),
     var isFavourite: Boolean = false
 ): Serializable

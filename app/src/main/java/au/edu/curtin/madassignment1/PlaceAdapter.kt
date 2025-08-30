@@ -30,7 +30,7 @@ class PlaceAdapter(
         holder.textViewPlaceName.text = place.name
         holder.textViewRating.text = place.rating.toString()
         holder.textViewShortDescription.text = place.shortDescription
-        holder.imageViewPlace.setImageResource(android.R.drawable.ic_menu_gallery)
+        holder.imageViewPlace.setImageResource(place.image)
 
         if (place.isFavourite) {
             holder.imageViewRatingStar.setImageResource(R.drawable.rating_star)
