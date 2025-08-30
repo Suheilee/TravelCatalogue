@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PlaceAdapter(
-    private val places: List<PlaceData>
+    private val places: List<PlaceData>,
 ): RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>()  {
     class PlaceViewHolder(view: View): RecyclerView.ViewHolder(view){
         val imageViewPlace = view.findViewById<ImageView>(R.id.imageViewPlace)
@@ -23,4 +23,11 @@ class PlaceAdapter(
             .inflate(R.layout.fragment_place, parent, false)
         return PlaceViewHolder(view)
     }
+
+    override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
+        val place = places[position]
+        holder.textViewPlaceName.text = place.name
+    }
+
+    override fun getItemCount(): Int = places.size
 }

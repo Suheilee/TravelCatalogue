@@ -26,6 +26,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.list_container, ListFragment())
+                .commit()
+        }
+
+
         val searchBar = findViewById<EditText>(R.id.searchBar)
         val filterButton = findViewById<Button>(R.id.filterButton)
 
@@ -36,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                     it.name.contains(s.toString(), ignoreCase = true) ||
                             it.shortDescription.contains(s.toString(), ignoreCase = true)
                 }
-                placeAdapter.updateList(filtered)
+                //placeAdapter.updateList(filtered)
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -64,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     // Update RecyclerView
-                    placeAdapter.updateList(filteredList)
+                    //placeAdapter.updateList(filteredList)
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
