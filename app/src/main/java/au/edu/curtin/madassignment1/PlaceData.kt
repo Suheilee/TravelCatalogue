@@ -7,7 +7,7 @@ object PlaceData {
             shortDescription = "Fine dining with seasonal Australian cuisine.",
             longDescription = "Elegant restaurant offering seasonal, produce-driven dishes inspired by Australian native ingredients.",
             rating = 4.9f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.wildflower,
             categories = listOf("Perth City", "Fine Dining", "Australian", "Romantic", "Expensive", "Outdoor Seating"),
             isFavourite = true
         ),
