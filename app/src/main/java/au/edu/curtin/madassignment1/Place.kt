@@ -5,7 +5,8 @@ data class Place(
     val shortDescription: String,
     val longDescription: String,
     val rating: Float,
-    val image: String, // Could be a URL or a drawable resource name
+    val image: String, // image URL
+    val categories: List<String> = emptyList(),
     var isFavourite: Boolean = false
 )
 

@@ -1,12 +1,15 @@
 package au.edu.curtin.madassignment1
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,10 +42,38 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
+        fun showCategoryFilterDialog() {
+            // Extract all unique categories from your places list
+            val allCategories = placesList.flatMap { it.categories }.distinct().toTypedArray()
+            val selectedItems = BooleanArray(allCategories.size) { false }
+
+            // Show multi-choice dialog
+            AlertDialog.Builder(this)
+                .setTitle("Select Categories")
+                .setMultiChoiceItems(allCategories, selectedItems) { _, which, isChecked ->
+                    selectedItems[which] = isChecked
+                }
+                .setPositiveButton("Apply") { _, _ ->
+                    // Get the categories user selected
+                    val chosenCategories = allCategories.filterIndexed { index, _ -> selectedItems[index] }
+
+                    // Apply filter
+                    val filteredList = placesList.filter { place ->
+                        // Include place if any of its categories match a selected category
+                        chosenCategories.isEmpty() || place.categories.any { it in chosenCategories }
+                    }
+
+                    // Update RecyclerView
+                    placeAdapter.updateList(filteredList)
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
         // Filter by Favourites
         filterButton.setOnClickListener {
-            val filtered = placesList.filter { it.isFavourite }
-            placeAdapter.updateList(filtered)
+            showCategoryFilterDialog()
         }
+
     }
 }
