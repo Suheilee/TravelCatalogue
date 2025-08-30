@@ -10,10 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
     private var placesList = PlaceData.samplePlaces
+    private lateinit var placeViewModel: PlaceViewModel
+    private lateinit var listFragment: ListFragment
+    private var allPlaces: List<Place> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        placeViewModel = ViewModelProvider(this)[PlaceViewModel::class.java]
 
         if(savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
