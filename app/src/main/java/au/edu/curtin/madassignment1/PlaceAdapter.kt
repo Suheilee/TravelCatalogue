@@ -1,5 +1,6 @@
 package au.edu.curtin.madassignment1
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,14 @@ class PlaceAdapter(
             holder.imageViewRatingStar.visibility = View.VISIBLE
         } else {
             holder.imageViewRatingStar.visibility = View.GONE
+        }
+
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailActivity::class.java).apply {
+                putExtra("place", place)
+            }
+            context.startActivity(intent)
         }
     }
 
