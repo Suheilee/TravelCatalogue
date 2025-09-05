@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
 
 class DetailFragment : Fragment() {
@@ -29,5 +30,12 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         placeViewModel = ViewModelProvider(requireActivity())[PlaceViewModel::class.java]
+
+        val backButton = view.findViewById<ImageButton>(R.id.btnBack)
+
+        // Go back to the main activity
+        backButton.setOnClickListener {
+            requireActivity().finish()
+        }
     }
 }
