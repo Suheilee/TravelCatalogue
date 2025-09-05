@@ -16,7 +16,7 @@ object PlaceData {
             shortDescription = "Handmade pasta in a cozy setting.",
             longDescription = "Bustling eatery known for its handmade pasta and Northern Italian cuisine, praised for authenticity and flavor.",
             rating = 4.8f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.lulu_la_delizia,
             categories = listOf("Perth City", "Italian", "Casual Dining", "Moderate", "Family Friendly"),
             isFavourite = true
         ),
@@ -25,7 +25,7 @@ object PlaceData {
             shortDescription = "Fresh seafood and cocktails in Fremantle.",
             longDescription = "Vibrant spot offering fresh seafood and cocktails, perfect for enjoying the Fremantle atmosphere.",
             rating = 4.7f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.madalenas_bar,
             categories = listOf("Fremantle", "Seafood", "Bar", "Casual Dining", "Outdoor Seating"),
             isFavourite = false
         ),
@@ -34,7 +34,7 @@ object PlaceData {
             shortDescription = "Modern Japanese dining in Northbridge.",
             longDescription = "Modern Japanese restaurant renowned for its sushi and extensive sake selection.",
             rating = 4.6f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.james_parker_sushi_and_sake,
             categories = listOf("Northbridge", "Japanese", "Casual Dining", "Moderate", "Bar"),
             isFavourite = false
         ),
@@ -43,7 +43,7 @@ object PlaceData {
             shortDescription = "Classic French bistro with a contemporary twist.",
             longDescription = "French bistro offering classic dishes with a contemporary twist, set in a cozy atmosphere.",
             rating = 4.5f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.la_lune,
             categories = listOf("Perth City", "French", "Fine Dining", "Romantic", "Moderate"),
             isFavourite = false
         ),
@@ -52,7 +52,7 @@ object PlaceData {
             shortDescription = "Relaxed wine bar with seasonal menu.",
             longDescription = "Wine bar and restaurant known for its curated wine list and seasonal menu.",
             rating = 4.5f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.vin_populi,
             categories = listOf("Fremantle", "Wine Bar", "Casual Dining", "Moderate", "Outdoor Seating"),
             isFavourite = false
         ),
@@ -61,7 +61,7 @@ object PlaceData {
             shortDescription = "Rooftop bar with modern Australian cuisine.",
             longDescription = "Rooftop bar and restaurant offering modern Australian cuisine with a laid-back vibe.",
             rating = 4.4f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.the_standard,
             categories = listOf("Perth City", "Modern Australian", "Rooftop", "Casual Dining", "Moderate"),
             isFavourite = false
         ),
@@ -70,7 +70,7 @@ object PlaceData {
             shortDescription = "Authentic Thai street food in the city.",
             longDescription = "Thai restaurant by renowned chef David Thompson, serving bold and flavorful dishes.",
             rating = 4.3f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.long_chim,
             categories = listOf("Perth City", "Thai", "Casual Dining", "Moderate", "Spicy"),
             isFavourite = false
         ),
@@ -79,7 +79,7 @@ object PlaceData {
             shortDescription = "Refined dining experience with local ingredients.",
             longDescription = "Romantic restaurant offering a refined dining experience with a focus on local ingredients.",
             rating = 4.2f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.the_heritage,
             categories = listOf("Perth City", "Modern Australian", "Fine Dining", "Romantic", "Expensive"),
             isFavourite = false
         ),
@@ -88,7 +88,7 @@ object PlaceData {
             shortDescription = "Italian-style bar and restaurant in Mount Hawthorn.",
             longDescription = "Italian-style bar and restaurant known for its vibrant atmosphere and delicious food.",
             rating = 4.1f,
-            image = android.R.drawable.ic_menu_gallery,
+            image = R.drawable.casa_399,
             categories = listOf("Mount Hawthorn", "Italian", "Bar", "Casual Dining", "Moderate"),
             isFavourite = false
         )
