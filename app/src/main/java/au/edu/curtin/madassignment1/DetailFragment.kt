@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
 class DetailFragment : Fragment() {
@@ -16,6 +19,7 @@ class DetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        currentPlace = arguments?.getSerializable("place") as? Place
     }
 
     override fun onCreateView(
@@ -32,6 +36,18 @@ class DetailFragment : Fragment() {
         placeViewModel = ViewModelProvider(requireActivity())[PlaceViewModel::class.java]
 
         val backButton = view.findViewById<ImageButton>(R.id.btnBack)
+
+        val placeNameTextView = view.findViewById<TextView>(R.id.textViewPlaceName)
+        val placeImageView = view.findViewById<ImageView>(R.id.imageViewPlace)
+        val longDescriptionTextView = view.findViewById<TextView>(R.id.textLongDescription)
+        val ratingBar = view.findViewById<RatingBar>(R.id.ratingBar)
+
+        currentPlace?.let { place ->
+            placeNameTextView.text = place.name
+            placeImageView.setImageResource(place.image)
+            longDescriptionTextView.text = place.longDescription
+            ratingBar.rating = place.rating
+        }
 
         // Go back to the main activity
         backButton.setOnClickListener {

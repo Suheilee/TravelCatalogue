@@ -20,8 +20,13 @@ class DetailActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             val place = intent.getSerializableExtra("place") as? Place
+            val detailFragment = DetailFragment()
+            val bundle = Bundle()
+            bundle.putSerializable("place", place)
+            detailFragment.arguments = bundle
+            
             supportFragmentManager.beginTransaction()
-                .replace(R.id.detail_fragment_container, DetailFragment())
+                .replace(R.id.detail_fragment_container, detailFragment)
                 .commit()
         }
     }
