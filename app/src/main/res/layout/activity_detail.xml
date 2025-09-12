@@ -5,15 +5,64 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".DetailActivity"
+    android:layout_margin="24dp">
 
-    <FrameLayout
-        android:id="@+id/detail_fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_left"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/textViewPlaceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Name"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack"/>
+
+    <ImageView
+        android:id="@+id/imageViewPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_gravity="center|center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlaceName"/>
+
+    <LinearLayout
+        android:id="@+id/ratingBartAndFavouriteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPlace">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="2.5"
+            android:stepSize="0.5" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heart"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center|center_vertical" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textLongDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detail decription"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBartAndFavouriteButton"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
