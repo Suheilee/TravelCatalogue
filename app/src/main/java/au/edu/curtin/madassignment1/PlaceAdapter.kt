@@ -43,7 +43,7 @@ class PlaceAdapter(
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailActivity::class.java).apply {
-                putExtra("place", place)
+                putExtra("place_name", place.name)
             }
             context.startActivity(intent)
         }

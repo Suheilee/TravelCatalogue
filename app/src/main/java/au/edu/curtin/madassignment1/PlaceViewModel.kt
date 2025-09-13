@@ -15,15 +15,14 @@ class PlaceViewModel: ViewModel() {
     private var searchQuery: String = ""
     private var selectedCategories: List<String> = emptyList()
 
-    fun toggleFavourite(place: Place) {
-        val currentPlaces = _places.value?.toMutableList() ?: return
-        val index = currentPlaces.indexOfFirst { it.name == place.name }
-        if (index != -1) {
-            currentPlaces[index] = currentPlaces[index].copy(isFavourite = !currentPlaces[index].isFavourite)
-            _places.value = currentPlaces
-        }
+    fun toggleFavourite(place: String) {
+        PlaceManager.toggleFavorite(place)
         // Keep filters applied after toggle
         applyFilters()
+    }
+
+    fun getPlaceByName(place: String): Place? {
+        return PlaceManager.getPlaceByName(place)
     }
 
     fun setSearchQuery(query: String) {
@@ -48,6 +47,7 @@ class PlaceViewModel: ViewModel() {
         }
     }
 
-
-
+    fun refreshData() {
+        applyFilters()
+    }
 }

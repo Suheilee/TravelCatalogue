@@ -1,7 +1,7 @@
 package au.edu.curtin.madassignment1
 
 object PlaceData {
-    val samplePlaces = listOf(
+    val samplePlaces = mutableListOf(
         Place(
             name = "Wildflower",
             shortDescription = "Fine dining with seasonal Australian cuisine.",

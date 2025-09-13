@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ListFragment : Fragment() {
 
     private lateinit var placeAdapter: PlaceAdapter
+    private lateinit var placeViewModel: PlaceViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        placeViewModel = ViewModelProvider(requireActivity())[PlaceViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -30,10 +34,13 @@ class ListFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        placeAdapter = PlaceAdapter(PlaceData.samplePlaces)
+        placeAdapter = PlaceAdapter(emptyList())
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = placeAdapter
 
+        placeViewModel.place.observe(viewLifecycleOwner) { places ->
+            placeAdapter.updateList(places)
+        }
     }
 
 }

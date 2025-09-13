@@ -89,8 +89,10 @@ class MainActivity : AppCompatActivity() {
         filterButton.setOnClickListener {
             showCategoryFilterDialog()
         }
+    }
 
-
-
+    override fun onResume() {
+        super.onResume()
+        placeViewModel.refreshData()
     }
 }
