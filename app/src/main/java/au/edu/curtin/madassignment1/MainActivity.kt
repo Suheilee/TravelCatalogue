@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private var placesList = PlaceData.samplePlaces
     private lateinit var placeViewModel: PlaceViewModel
-    private lateinit var listFragment: ListFragment
     private var allPlaces: List<Place> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +44,7 @@ class MainActivity : AppCompatActivity() {
         // Live Search
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val filtered = placesList.filter {
-                    it.name.contains(s.toString(), ignoreCase = true) ||
-                            it.shortDescription.contains(s.toString(), ignoreCase = true)
-                }
-                //placeAdapter.updateList(filtered)
+                placeViewModel.setSearchQuery(s.toString())
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -59,7 +54,9 @@ class MainActivity : AppCompatActivity() {
         fun showCategoryFilterDialog() {
             // Extract all unique categories from your places list
             val allCategories = placesList.flatMap { it.categories }.distinct().toTypedArray()
-            val selectedItems = BooleanArray(allCategories.size) { false }
+            val selectedItems = BooleanArray(allCategories.size) { index ->
+                placeViewModel.getSelectedCategories().contains(allCategories[index])
+            }
 
             // Show multi-choice dialog
             AlertDialog.Builder(this)
@@ -71,15 +68,6 @@ class MainActivity : AppCompatActivity() {
                     // Get the categories user selected
                     val chosenCategories = allCategories.filterIndexed { index, _ -> selectedItems[index] }
                     placeViewModel.setCategories(chosenCategories)
-
-//                    // Apply filter
-//                    val filteredList = placesList.filter { place ->
-//                        // Include place if any of its categories match a selected category
-//                        chosenCategories.isEmpty() || place.categories.any { it in chosenCategories }
-//                    }
-
-                    // Update RecyclerView
-                    // placeAdapter.updateList(filteredList)
                 }
                 .setNegativeButton("Cancel", null)
                 .show()

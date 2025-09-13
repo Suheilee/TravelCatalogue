@@ -50,4 +50,7 @@ class PlaceViewModel: ViewModel() {
     fun refreshData() {
         applyFilters()
     }
+
+    fun getSelectedCategories(): List<String> = selectedCategories
+
 }
