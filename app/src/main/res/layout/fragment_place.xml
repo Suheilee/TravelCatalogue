@@ -14,19 +14,22 @@
             android:id="@+id/imageViewPlace"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            tools:src="@android:drawable/ic_menu_gallery" />
+            tools:src="@android:drawable/ic_menu_gallery"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/textViewPlaceName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Place Name"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textViewRating"
@@ -41,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                tools:src="@drawable/rating_star"/>
+                tools:src="@drawable/heart"/>
 
         </LinearLayout>
 

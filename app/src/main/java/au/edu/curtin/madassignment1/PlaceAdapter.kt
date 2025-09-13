@@ -34,7 +34,7 @@ class PlaceAdapter(
         holder.imageViewPlace.setImageResource(place.image)
 
         if (place.isFavourite) {
-            holder.imageViewRatingStar.setImageResource(R.drawable.rating_star)
+            holder.imageViewRatingStar.setImageResource(R.drawable.heart_solid)
             holder.imageViewRatingStar.visibility = View.VISIBLE
         } else {
             holder.imageViewRatingStar.visibility = View.GONE
