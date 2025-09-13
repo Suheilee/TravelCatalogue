@@ -12,6 +12,7 @@ class ListFragment : Fragment() {
 
     private lateinit var placeAdapter: PlaceAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,9 +33,7 @@ class ListFragment : Fragment() {
         placeAdapter = PlaceAdapter(PlaceData.samplePlaces)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = placeAdapter
+
     }
 
-    fun updateList(places: List<Place>) {
-        placeAdapter.updateList(places)
-    }
 }

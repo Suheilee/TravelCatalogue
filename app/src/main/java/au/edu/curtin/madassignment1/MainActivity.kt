@@ -70,15 +70,16 @@ class MainActivity : AppCompatActivity() {
                 .setPositiveButton("Apply") { _, _ ->
                     // Get the categories user selected
                     val chosenCategories = allCategories.filterIndexed { index, _ -> selectedItems[index] }
+                    placeViewModel.setCategories(chosenCategories)
 
-                    // Apply filter
-                    val filteredList = placesList.filter { place ->
-                        // Include place if any of its categories match a selected category
-                        chosenCategories.isEmpty() || place.categories.any { it in chosenCategories }
-                    }
+//                    // Apply filter
+//                    val filteredList = placesList.filter { place ->
+//                        // Include place if any of its categories match a selected category
+//                        chosenCategories.isEmpty() || place.categories.any { it in chosenCategories }
+//                    }
 
                     // Update RecyclerView
-                    //placeAdapter.updateList(filteredList)
+                    // placeAdapter.updateList(filteredList)
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity() {
         filterButton.setOnClickListener {
             showCategoryFilterDialog()
         }
+
+
 
     }
 }
