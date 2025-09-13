@@ -1,22 +1,16 @@
 package au.edu.curtin.madassignment1
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
-
-    private var placesList = PlaceData.samplePlaces
     private lateinit var placeViewModel: PlaceViewModel
-    private var allPlaces: List<Place> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,41 +35,12 @@ class MainActivity : AppCompatActivity() {
         val searchBar = findViewById<EditText>(R.id.searchBar)
         val filterButton = findViewById<Button>(R.id.filterButton)
 
-        // Live Search
-        searchBar.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                placeViewModel.setSearchQuery(s.toString())
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
-        fun showCategoryFilterDialog() {
-            // Extract all unique categories from your places list
-            val allCategories = placesList.flatMap { it.categories }.distinct().toTypedArray()
-            val selectedItems = BooleanArray(allCategories.size) { index ->
-                placeViewModel.getSelectedCategories().contains(allCategories[index])
-            }
-
-            // Show multi-choice dialog
-            AlertDialog.Builder(this)
-                .setTitle("Select Categories")
-                .setMultiChoiceItems(allCategories, selectedItems) { _, which, isChecked ->
-                    selectedItems[which] = isChecked
-                }
-                .setPositiveButton("Apply") { _, _ ->
-                    // Get the categories user selected
-                    val chosenCategories = allCategories.filterIndexed { index, _ -> selectedItems[index] }
-                    placeViewModel.setCategories(chosenCategories)
-                }
-                .setNegativeButton("Cancel", null)
-                .show()
-        }
+        //Live search
+        SearchHelper.setupSearch(searchBar, placeViewModel)
 
         // Filter by Favourites
         filterButton.setOnClickListener {
-            showCategoryFilterDialog()
+            FilterDialogFragment().show(supportFragmentManager, "FilterDialog")
         }
     }
 
