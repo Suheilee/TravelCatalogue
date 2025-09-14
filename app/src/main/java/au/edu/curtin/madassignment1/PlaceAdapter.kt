@@ -29,7 +29,7 @@ class PlaceAdapter(
         val place = places[position]
 
         holder.textViewPlaceName.text = place.name
-        holder.textViewRating.text = place.rating.toString()
+        holder.textViewRating.text = String.format("%.1f", place.rating)
         holder.textViewShortDescription.text = place.shortDescription
         holder.imageViewPlace.setImageResource(place.image)
 

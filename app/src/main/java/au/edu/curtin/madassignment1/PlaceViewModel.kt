@@ -17,7 +17,6 @@ class PlaceViewModel: ViewModel() {
 
     fun toggleFavourite(place: String) {
         PlaceManager.toggleFavorite(place)
-        // Keep filters applied after toggle
         applyFilters()
     }
 
@@ -47,10 +46,14 @@ class PlaceViewModel: ViewModel() {
         }
     }
 
+    fun updateRating(placeName: String, newRating: Float) {
+        PlaceManager.updateRating(placeName, newRating)
+        applyFilters()
+    }
+
     fun refreshData() {
         applyFilters()
     }
 
     fun getSelectedCategories(): List<String> = selectedCategories
-
 }

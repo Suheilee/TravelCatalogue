@@ -64,6 +64,18 @@ class DetailActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
+
+        ratingBar.setOnRatingBarChangeListener { _, rating, fromUser ->
+            if (fromUser) {
+                currentPlace?.let { place ->
+                    placeViewModel.updateRating(place.name, rating)
+                    val updatedPlace = placeViewModel.getPlaceByName(place.name)
+                    updatedPlace?.let {
+                        currentPlace = it
+                    }
+                }
+            }
+        }
     }
 
     private fun updateFavoriteButton(isFavorite: Boolean) {
