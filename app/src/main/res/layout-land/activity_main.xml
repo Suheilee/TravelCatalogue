@@ -45,8 +45,6 @@
             android:hint="Search..."
             android:padding="10dp"
             android:background="@drawable/searchbar"
-            android:drawableEnd="@android:drawable/ic_menu_close_clear_cancel"
-            android:drawablePadding="6dp"
             android:layout_marginEnd="4dp"/>
 
         <!--Search Button-->
@@ -60,12 +58,26 @@
             android:contentDescription="Search"
             android:layout_marginEnd="8dp"/>
 
+
         <!--Filter Button-->
         <Button
             android:id="@+id/filterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Filter"
+            android:backgroundTint="#ccb79c"
+            android:drawableStart="@android:drawable/ic_menu_sort_by_size"
+            android:textSize="12sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
             android:backgroundTint="#ccb79c"
             android:drawableStart="@android:drawable/ic_menu_sort_by_size"
             android:textSize="12sp"

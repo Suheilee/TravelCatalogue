@@ -14,6 +14,7 @@ class PlaceViewModel: ViewModel() {
 
     private var searchQuery: String = ""
     private var selectedCategories: List<String> = emptyList()
+    private var favouritesOnly: Boolean = false
 
     fun toggleFavourite(place: String) {
         PlaceManager.toggleFavorite(place)
@@ -35,6 +36,19 @@ class PlaceViewModel: ViewModel() {
         applyFilters()
     }
 
+    fun setFavouritesOnly(enabled: Boolean) {
+        favouritesOnly = enabled
+        applyFilters()
+    }
+
+    fun isFavouritesOnly(): Boolean = favouritesOnly
+
+    fun clearSelection(){
+        setCategories(emptyList())
+        setSearchQuery("")
+        setFavouritesOnly(false)
+    }
+
     private fun applyFilters() {
         _places.value = allPlaces.filter { place ->
             // Search filter
@@ -43,7 +57,8 @@ class PlaceViewModel: ViewModel() {
                     place.shortDescription.contains(searchQuery, ignoreCase = true)) &&
                     // Category filter
                     (selectedCategories.isEmpty() ||
-                            place.categories.any { it in selectedCategories })
+                            place.categories.any { it in selectedCategories }) &&
+                    (!favouritesOnly || place.isFavourite)
         }
     }
 

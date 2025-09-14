@@ -2,17 +2,14 @@ package au.edu.curtin.madassignment1
 
 import android.app.Dialog
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FilterDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FilterDialogFragment : DialogFragment() {
 
     private lateinit var placeViewModel: PlaceViewModel
@@ -22,18 +19,41 @@ class FilterDialogFragment : DialogFragment() {
 
         val placesList = PlaceData.samplePlaces
         val allCategories = placesList.flatMap { it.categories }.distinct().toTypedArray()
-        val selectedItems = BooleanArray(allCategories.size) { index ->
-            placeViewModel.getSelectedCategories().contains(allCategories[index])
+
+        val dialogView = requireActivity().layoutInflater.inflate(R.layout.fragment_filter_dialog, null)
+        val favouritesCheckbox = dialogView.findViewById<CheckBox>(R.id.favouritesCheckbox)
+        val categoryList = dialogView.findViewById<ListView>(R.id.categoryList)
+
+        // Pre-check favourites
+        favouritesCheckbox.isChecked = placeViewModel.isFavouritesOnly()
+
+        // Populate category list
+        categoryList.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_multiple_choice,
+            allCategories
+        )
+
+        // Restore previous category selections
+        val selectedCategories = placeViewModel.getSelectedCategories()
+        for (i in allCategories.indices) {
+            if (selectedCategories.contains(allCategories[i])) {
+                categoryList.setItemChecked(i, true)
+            }
         }
 
         return AlertDialog.Builder(requireContext())
-            .setTitle("Select Categories")
-            .setMultiChoiceItems(allCategories, selectedItems) { _, which, isChecked ->
-                selectedItems[which] = isChecked
-            }
+            .setTitle("Select Filters")
+            .setView(dialogView)
             .setPositiveButton("Apply") { _, _ ->
-                val chosenCategories = allCategories.filterIndexed { index, _ -> selectedItems[index] }
+                val chosenCategories = mutableListOf<String>()
+                for (i in 0 until categoryList.count) {
+                    if (categoryList.isItemChecked(i)) {
+                        chosenCategories.add(allCategories[i])
+                    }
+                }
                 placeViewModel.setCategories(chosenCategories)
+                placeViewModel.setFavouritesOnly(favouritesCheckbox.isChecked)
             }
             .setNegativeButton("Cancel", null)
             .create()
