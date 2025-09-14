@@ -15,4 +15,15 @@ object PlaceManager {
             false
         }
     }
+
+    fun updateRating(placeName: String, newRating: Float): Boolean {
+        val placeIndex = PlaceData.samplePlaces.indexOfFirst { it.name == placeName }
+        return if (placeIndex != -1) {
+            val currentPlace = PlaceData.samplePlaces[placeIndex]
+            PlaceData.samplePlaces[placeIndex] = currentPlace.copy(rating = newRating)
+            true
+        } else {
+            false
+        }
+    }
 }
