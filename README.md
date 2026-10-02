@@ -33,6 +33,8 @@ DetailActivity
 └── Favourite Toggle
 ```
 
+<img width="1189" height="650" alt="image" src="https://github.com/user-attachments/assets/6e52b058-226f-4ebc-abba-3ab0a226d2ce" />
+
 ### Main Screen
 
 The main screen contains the catalog list, search functionality, filter controls, and reset functionality.
